@@ -5,16 +5,14 @@ public:
         int sum = 0;
 
         for(int i = 0; i < nums.size(); i++) {
+            set<int> s;
             for(int j = i; j < nums.size(); j++) { 
-                set<int> s;
-                for(int k = i; k <= j; k++) {
-                    s.insert(nums[k]);
-                }
-
+                s.insert(nums[j]);
                 sum += s.size()*s.size();
             }
+            
         }
-        
+
         return sum;
     }
 };
