@@ -1,41 +1,28 @@
-bool comparator(const pair<int,int> &one, 
-                    const pair<int, int> &two) 
-    {
-        return one.second < two.second;
-    }
-
 class Solution {
 public:
     int findLeastNumOfUniqueInts(vector<int>& arr, int k) {
+        unordered_map<int, int> mp;
+        for(auto i : arr) mp[i]++;
 
-        map<int, int> mp;
-        for(auto i : arr) {
-            mp[i]++;
-        }
+        vector<int> v;
+        for(auto i : mp) v.push_back(i.second);
 
-        vector<pair<int, int>> vec;
+        sort(v.begin(), v.end());
 
-        for(auto p : mp) {
-            vec.push_back(p);
-        }
-
-        sort(vec.begin(), vec.end(), comparator);
 
         int count = 0;
-        int unique = mp.size();
-        for(auto p : vec) {
-            while(mp[p.first] > 0) {
-                if(count == k)
-                    break;
-
-                mp[p.first]--;
-                count++;
-
-                if(mp[p.first] == 0)
-                    unique--;
+        for(int i = 0; i < v.size(); i++) {
+            if(k > v[i]) {
+                k -= v[i];
+                v[i] = 0;
+            } else {
+                v[i] -= k;
+                k = 0;
             }
+
+            if(v[i] != 0) count++;
         }
 
-        return unique;
+        return count;
     }
 };
