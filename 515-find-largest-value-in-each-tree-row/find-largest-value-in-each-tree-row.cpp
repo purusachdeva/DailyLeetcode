@@ -27,15 +27,11 @@ public:
                 TreeNode* temp = q.front();
                 q.pop();
 
-                cout << temp -> val << " ";
-
                 maxi = max(maxi, temp->val);
                 if(temp->left) q.push(temp->left);
                 if(temp->right) q.push(temp->right);
                 n--;
             }
-
-            cout << "\n";
 
             rWiseMax.push_back(maxi);
         }
