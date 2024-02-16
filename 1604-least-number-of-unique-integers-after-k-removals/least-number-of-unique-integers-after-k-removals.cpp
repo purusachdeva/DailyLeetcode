@@ -21,10 +21,6 @@ public:
 
         sort(vec.begin(), vec.end(), comparator);
 
-        // for(auto p : vec) {
-        //     cout << p.first << ": " << p.second << endl;
-        // }
-
         int count = 0;
         int unique = mp.size();
         for(auto p : vec) {
@@ -39,10 +35,6 @@ public:
                     unique--;
             }
         }
-
-        // for(auto p : mp) {
-        //     cout << p.first << ": " << p.second << endl;
-        // }
 
         return unique;
     }
