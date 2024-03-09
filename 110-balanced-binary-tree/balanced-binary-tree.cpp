@@ -12,6 +12,7 @@
 class Solution {
 public:
     int height(TreeNode* root, bool &f) {
+        if(f == false) return 0;
         if(!root) return 0;
         
         int left = 0, right = 0;
