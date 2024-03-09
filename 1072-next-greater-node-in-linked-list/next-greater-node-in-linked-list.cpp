@@ -11,23 +11,25 @@
 class Solution {
 public:
     vector<int> nextLargerNodes(ListNode* head) {
-
-        vector<int> ans;
+        vector<int> vec;
         ListNode* temp = head;
 
         while(temp != NULL) {
-            ListNode* temp1 = temp;
-            int bigger = 0;
-            while(temp1 != NULL) {
-                if(temp1->val > temp->val) {
-                    bigger = temp1->val;
-                    break;
-                }
-                temp1 = temp1->next;
+            vec.push_back(temp->val);
+            temp = temp->next;
+        }
+
+        stack<int> st;
+        vector<int> ans(vec.size(), 0);
+        st.push(0);
+
+        for(int i = vec.size()-1; i >= 0; i--) {
+            while(st.top() != 0&& st.top() <= vec[i]) {
+                st.pop();
             }
 
-            ans.push_back(bigger);
-            temp = temp->next;
+            ans[i] = st.top();
+            st.push(vec[i]);
         }
 
         return ans;
