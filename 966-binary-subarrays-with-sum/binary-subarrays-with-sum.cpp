@@ -1,19 +1,24 @@
 class Solution {
 public:
-    int numSubarraysWithSum(vector<int>& nums, int goal) {
-        unordered_map<int, int> count;
-        count[0] = 1;
-        int curr_sum = 0;
-        int total_subarrays = 0;
+    int atMostn(vector<int>& nums, int n) {
+        int i = 0, sum = 0, result = 0;
 
-        for (int num : nums) {
-            curr_sum += num;
-            if (count.find(curr_sum - goal) != count.end()) {
-                total_subarrays += count[curr_sum - goal];
+        for(int j = 0; j < nums.size(); j++) {
+            sum += nums[j];
+            while(sum > n && i <= j) {
+                sum -= nums[i];
+                i++;
             }
-            count[curr_sum]++;
+
+            // Counting every possible array ending with index j and starting with i
+            result += j - i + 1; 
         }
 
-        return total_subarrays;
+        return result;
+    }
+
+    int numSubarraysWithSum(vector<int>& nums, int goal) {
+        // common subarrays get cancelled
+        return atMostn(nums, goal) - atMostn(nums, goal-1);
     }
 };
