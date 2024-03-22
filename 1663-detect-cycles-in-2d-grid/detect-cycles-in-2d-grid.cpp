@@ -1,47 +1,26 @@
 class Solution {
 public:
-    bool checkCycle(vector<vector<char>>& grid, vector<vector<bool>>& visited, int i, int j, char val, int cameFrom) {
-
-        if(i >= grid.size() || j >= grid[0].size()) return false;
-
-        if(grid[i][j] != val) {
-            if(val == '$')
-                val = grid[i][j];
-            
-            else
-                return false;
-        }
-
-        if(visited[i][j]) {
-            return true;
-        }
-
+   vector<int> dir = { 0, 1, 0, -1, 0 }; 
+    bool isCyclic(vector<vector<char>>& grid, vector<vector<bool>>& visited, int i, int j, int x, int y)
+    {
         visited[i][j] = true;
-
-        bool a = false, b = false, c = false, d = false;
-        
-        if(cameFrom != 3) a = checkCycle(grid, visited, i + 1, j, val, 1);
-        if(a) return true;
-        if(cameFrom != 4) b = checkCycle(grid, visited, i, j+1, val, 2);
-        if(b) return true;
-        if(cameFrom != 1) c = checkCycle(grid, visited, i - 1, j, val, 3);
-        if(c) return true;
-        if(cameFrom != 2) d = checkCycle(grid, visited, i , j - 1, val, 4);
-        if(d) return true;
-
+        for(int d = 0; d < 4; ++d)
+        {
+            int a = i+dir[d];
+            int b = j+dir[d+1];
+            if(a >= 0 && a < grid.size() && b >= 0 && b < grid[0].size() && grid[a][b] == grid[i][j] && !(x == a && y == b))
+                if(visited[a][b] || isCyclic(grid, visited, a,b,i,j))
+                    return true;
+        }
         return false;
     }
-
     bool containsCycle(vector<vector<char>>& grid) {
-        vector<vector<bool>> visited(grid.size(), vector<bool>(grid[0].size(), false));
-
-        for(int i = 0; i < grid.size(); i++) {
-            for(int j = 0; j < grid[0].size(); j++) {
-                if(visited[i][j] == 0)
-                    if(checkCycle(grid, visited, i, j, '$', -1)) return true;
-            }
-        }
-
+        int n = grid.size(), m = grid[0].size();
+        vector<vector<bool>> visited(n, vector<bool>(m, false));
+        for(int i = 0; i < n; ++i)
+            for(int j = 0; j < m; ++j)
+                if(!visited[i][j] && isCyclic(grid, visited, i, j, -1, -1))
+                    return true;
         return false;
     }
 };
