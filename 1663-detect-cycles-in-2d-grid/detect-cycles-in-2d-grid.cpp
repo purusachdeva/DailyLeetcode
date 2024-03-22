@@ -12,11 +12,13 @@ public:
                 return false;
         }
 
+        
         if(visited[i][j]) {
             return true;
         }
 
         visited[i][j] = true;
+
         
         if(cameFrom != 3) 
             if (checkCycle(grid, visited, i + 1, j, val, 1))
@@ -41,8 +43,11 @@ public:
     bool containsCycle(vector<vector<char>>& grid) {
         vector<vector<bool>> visited(grid.size(), vector<bool>(grid[0].size(), false));
 
-        for(int i = 0; i < grid.size(); i++) {
-            for(int j = 0; j < grid[0].size(); j++) {
+        int n = grid.size();
+        int m = grid[0].size();
+        
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < m; j++) {
                 if(!visited[i][j] && checkCycle(grid,visited, i, j, '$', -1))
                     return true;
             }
