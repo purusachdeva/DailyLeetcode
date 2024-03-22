@@ -2,7 +2,7 @@ class Solution {
 public:
     bool checkCycle(vector<vector<char>>& grid, vector<vector<bool>>& visited, int i, int j, char val, int cameFrom) {
 
-        if(i >= grid.size() || j >= grid[0].size()) return false;
+        if(i >= grid.size() || j >= grid[0].size() || i < 0 || j < 0) return false;
 
         if(grid[i][j] != val) {
             if(val == '$')
@@ -45,7 +45,7 @@ public:
 
         int n = grid.size();
         int m = grid[0].size();
-        
+
         for(int i = 0; i < n; i++) {
             for(int j = 0; j < m; j++) {
                 if(!visited[i][j] && checkCycle(grid,visited, i, j, '$', -1))
