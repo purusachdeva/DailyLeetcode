@@ -1,16 +1,16 @@
 class Solution {
 public:
     bool isPrime(int number) {
-    if (number <= 1) {
-        return false;
-    }
-    for (int i = 2; i * i <= number; ++i) {
-        if (number % i == 0) {
+        if (number <= 1) {
             return false;
         }
+        for (int i = 2; i * i <= number; ++i) {
+            if (number % i == 0) {
+                return false;
+            }
+        }
+        return true;
     }
-    return true;
-}
 
     int maximumPrimeDifference(vector<int>& nums) {
         int left = -1, right = -1;
