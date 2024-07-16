@@ -1,30 +1,25 @@
 class Solution {
-    
-    static bool cmp(const std::pair<int, int>& a, const std::pair<int, int>& b) {
-        return a.second > b.second; // Use > to get top k frequent elements
-    }
-
-    public:
-
+public:
     vector<int> topKFrequent(vector<int>& nums, int k) {
-        map<int, int> m;
-
+        unordered_map<int, int> m;
         for(auto i : nums) m[i]++;
 
-        vector<int> ans;
-        int count = 0;
+        vector<vector<int>> freq(nums.size() + 1);
 
-        vector<pair<int, int>> freqVec(m.begin(), m.end());
-
-        sort(freqVec.begin(), freqVec.end(), cmp);
-
-        for(auto i : freqVec) {
-            if(count == k) break;
-
-            ans.push_back(i.first);
-            count++;
+        for(auto [n, c] : m) {
+            freq[c].push_back(n);
         }
 
-        return ans;
+        vector<int> result;
+
+        for(int i = freq.size() - 1; i >= 0; i--) {
+            if(result.size() == k) break;
+
+            for(auto j : freq[i]) {
+                result.push_back(j);
+            }
+        }
+
+        return result;
     }
 };
