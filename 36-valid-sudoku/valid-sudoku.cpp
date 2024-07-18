@@ -22,8 +22,6 @@ public:
         }
 
         // Box
-        vector<pair<int, int>> startPoints;
-
         for(int i = 0; i < board.size(); i+=3) {
             for(int j = 0; j < board.size(); j+=3) {
                 unordered_map<char, int> mp;
