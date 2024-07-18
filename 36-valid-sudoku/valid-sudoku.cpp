@@ -26,20 +26,13 @@ public:
 
         for(int i = 0; i < board.size(); i+=3) {
             for(int j = 0; j < board.size(); j+=3) {
-                startPoints.push_back(make_pair(i, j));
-            }
-        }
-
-        for(auto box : startPoints) {
-            int i = box.first;
-            int j = box.second;
-
-            unordered_map<char, int> mp;
-            for(int a = 0; a < 3; a++) {
-                for(int b = 0; b < 3; b++) {
-                    if(board[i + a][j + b] == '.') continue;
-                    if(mp[board[i + a][j + b]]) return false;
-                    mp[board[i + a][j + b]] = true;
+                unordered_map<char, int> mp;
+                for(int a = 0; a < 3; a++) {
+                    for(int b = 0; b < 3; b++) {
+                        if(board[i + a][j + b] == '.') continue;
+                        if(mp[board[i + a][j + b]]) return false;
+                        mp[board[i + a][j + b]] = true;
+                    }
                 }
             }
         }
