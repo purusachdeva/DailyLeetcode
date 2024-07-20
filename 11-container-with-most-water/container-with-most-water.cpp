@@ -5,14 +5,10 @@ public:
         int ans = 0;
 
         while(i < j) {
-            int area;
-            if(height[i] < height[j]) {
-                area = (j - i) * height[i];
-                i++;
-            } else {
-                area = (j - i) * height[j];
-                j--;
-            }
+            int area = (j - i) * min(height[i], height[j]);
+            
+            if(height[i] < height[j]) i++; 
+            else j--;
 
             ans = max(area, ans);
         }
