@@ -1,50 +1,31 @@
 class Solution {
 public:
-    vector<vector<int>> twoSum(vector<int>& nums, int k, int i) {
-        int a = 0, b = nums.size() - 1;
-
-        vector<vector<int>> ans;
-
-        
-
-        while(a < b) {
-            if(a == i) a++;
-            else if(b == i) b--;
-
-            else if(nums[a] + nums[b] < k) a++;
-            
-            else if(nums[a] + nums[b] > k) b--;
-
-            else if(nums[a] + nums[b] == k) {
-                ans.push_back({nums[a], nums[b]});
-                a++;
-                b--;
-            }
-        }
-
-        return ans;
-    }
-
     vector<vector<int>> threeSum(vector<int>& nums) {
         sort(nums.begin(), nums.end());
 
-        set<vector<int>> ans;
+        vector<vector<int>> ans;
         for(int i = 0; i < nums.size(); i++) {
             if(i > 0) {
                 if(nums[i] == nums[i - 1]) continue;
             }
-            vector<vector<int>> comp = twoSum(nums, -nums[i], i);
 
-            if(comp.size())
-                for(auto ele : comp) {
-                    ele.push_back(nums[i]);
-                    sort(ele.begin(), ele.end());
-                    ans.insert(ele);
-                } 
+            int left = i + 1, right = nums.size() - 1;
+
+            while(left < right) {
+                int threeSum = nums[i] + nums[left] + nums[right];
+
+                if (threeSum > 0) right--;
+                else if(threeSum < 0) left++;
+                else {
+                    ans.push_back({nums[i], nums[left], nums[right]});
+                    left++;
+                    while (nums[left] == nums[left - 1] && left < right)
+                        left++;
+                }
+            }
         }
 
-        vector<vector<int>> real(ans.begin(), ans.end());
 
-        return real;
+        return ans;
     }
 };
