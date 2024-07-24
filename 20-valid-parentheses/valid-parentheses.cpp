@@ -4,19 +4,13 @@ public:
         stack<char> st;
 
         for(auto i : s) {
-            if(i == '(' || i == '{' || i == '[') {
-                st.push(i);
-                cout << i << " ";
-            }
+            if(i == '(' || i == '{' || i == '[') st.push(i);
 
             else if(
                     (st.empty()) || 
                     (i == ')' && st.top() != '(') || 
                     (i == '}' && st.top() != '{') || 
-                    (i == ']' && st.top() != '[')
-                ) {
-                    return false;
-                }
+                    (i == ']' && st.top() != '[') ) return false;
 
             else st.pop();
         }
