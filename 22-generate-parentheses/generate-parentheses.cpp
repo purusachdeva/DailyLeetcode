@@ -31,11 +31,7 @@ public:
         vector<string> result;
 
         generateParenthesisHelper(0, 0, n, "", result);
-        vector<string> ans;
-        for(auto i : result) {
-            if (valid(i)) ans.push_back(i);
-        }
 
-        return ans;
+        return result;
     }
 };
