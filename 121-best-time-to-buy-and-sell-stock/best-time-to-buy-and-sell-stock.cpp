@@ -5,10 +5,9 @@ public:
 
         int maxi = 0;
         while (i <= j && j < prices.size()) {
-            maxi = max(maxi, prices[j] - prices[i]);
+            if (prices[j] > prices[i]) maxi = max(maxi, prices[j] - prices[i]);
+            else i = j;
 
-            if (prices[i] > prices[j]) i = j;
-            
             j++;
         }
 
