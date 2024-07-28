@@ -20,11 +20,11 @@ public:
     int search(vector<int>& nums, int target) {
         int i = 0, j = nums.size() - 1;
 
-        if (nums[i] == target) return i;
-        if (nums[j] == target) return j;
+        // if (nums[i] == target) return i;
+        // if (nums[j] == target) return j;
 
-        while (i < j) {
-            cout << i << " " << j << endl;
+        while (i <= j) {
+
             if (nums[i] == target) return i;
             if (nums[j] == target) return j;
 
