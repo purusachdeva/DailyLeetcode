@@ -9,7 +9,7 @@ public:
 
             if (prices[i] > prices[j]) i = j;
             
-            else j++;
+            j++;
         }
 
         return maxi;
