@@ -2,7 +2,7 @@ class Solution {
 public:
 
     vector<int> frequencySort(vector<int>& nums) {
-        unordered_map<int,int>freq;
+        vector<int>freq (201, 0);
 
         for(auto i : nums) freq[i + 100]++;
 
