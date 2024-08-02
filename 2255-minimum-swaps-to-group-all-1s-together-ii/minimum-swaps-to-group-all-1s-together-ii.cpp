@@ -2,11 +2,8 @@ class Solution {
 public:
     int minSwaps(vector<int>& nums) {
         vector<int> copy = nums;
-        int n = 0;
-        for(auto i : nums) {
-            if (i == 1) n++;
-            copy.push_back(i);
-        }
+        int n = count(nums.begin(), nums.end(), 1);
+        copy.insert(copy.end(), nums.begin(), nums.end());
 
         int i, j;
         int x = 0;
