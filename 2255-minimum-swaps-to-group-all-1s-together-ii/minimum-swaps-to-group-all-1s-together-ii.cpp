@@ -3,6 +3,7 @@ public:
     int minSwaps(vector<int>& nums) {
         vector<int> copy = nums;
         int n = count(nums.begin(), nums.end(), 1);
+        if (n == 0) return 0;
         copy.insert(copy.end(), nums.begin(), nums.end());
 
         int i, j;
