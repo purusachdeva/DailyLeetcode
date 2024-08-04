@@ -4,12 +4,8 @@ public:
         priority_queue<int, vector<int>, greater<int>> pq;
 
         for (auto i : nums) {
-            if (pq.size() >= k) {
-                if (i > pq.top()) {
-                    pq.pop();
-                    pq.push(i);
-                }
-            } else pq.push(i);
+            pq.push(i);
+            if (pq.size() > k) pq.pop();
         }
 
         return pq.top();
