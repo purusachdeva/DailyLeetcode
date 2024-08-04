@@ -6,7 +6,7 @@ public:
         for(int i = 0; i < nums.size(); i++) {
             int sum = 0;
             for(int j = i; j < nums.size(); j++) {
-                sum += nums[j];
+                sum += nums[j] % 1000000007;
                 sumArray.push_back(sum);
             }
         }
@@ -15,9 +15,7 @@ public:
 
         int sum = 0;
         for(int i = left - 1; i < right; i++) {
-            cout << sumArray[i] << " ";
-            sum += sumArray[i] % 1000000007;
-
+            sum += sumArray[i];
             sum = sum % 1000000007;
         }
 
