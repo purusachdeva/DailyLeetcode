@@ -6,12 +6,13 @@ public:
 
         for(auto s : arr) count[s]++;
         for(auto s : arr) {
-            if (count[s] == 1 && k > 0) {
+            if (count[s] == 1) {
                 k--;
-                ans = s;
+
+                if (k == 0) return s;
             } 
         }
 
-        return k == 0 ? ans : "";
+        return "";
     }
 };
