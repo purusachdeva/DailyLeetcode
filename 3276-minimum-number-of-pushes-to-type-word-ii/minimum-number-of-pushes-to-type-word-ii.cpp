@@ -8,21 +8,23 @@ public:
     int minimumPushes(string word) {
         vector<int> mapping(26, -1);
         int ans = 0;
-        int i = 0;
+        int m = 0;
 
-        map<char, int> freq;
-        for (auto ch : word) {
-            freq[ch]++;
-        }
+        vector<pair<int, int>> freq(26, {0, 0});
+        for (auto ch : word) freq[ch - 'a'] = {freq[ch - 'a'].first + 1, ch - 'a'};
+        sort(freq.begin(), freq.end(), [](pair<int,int> a, pair<int,int> b) {
+            return a.first > b.first;
+        });
 
-        vector<pair<char, int>> freqVec(freq.begin(), freq.end());
-        sort(freqVec.begin(), freqVec.end(), sortByValue);
 
-        for (auto ch : freqVec) {
-            if (mapping[ch.first - 'a'] == -1) {
-                mapping[ch.first - 'a'] = i; 
-                i++;
+        for (int i = 0; i < 26; i++) {
+            if (freq[i].first == 0) {
+                break;
             }
+
+            int ch = freq[i].second;
+            mapping[ch] = m;
+            m++;
         }
 
         for (auto ch : word) {
