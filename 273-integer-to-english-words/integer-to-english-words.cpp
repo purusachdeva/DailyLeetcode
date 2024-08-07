@@ -59,13 +59,13 @@ public:
             if (ans[ans.size() - 1] != ' ') ans += " ";
         }
 
-        int extra = 0;
-        for (int i = ans.size() - 1; i >= 0; i--) {
-            if (ans[i] == ' ') extra++;
-            else break;
-        }
+        // int extra = 0;
+        // for (int i = ans.size() - 1; i >= 0; i--) {
+        //     if (ans[i] == ' ') extra++;
+        //     else break;
+        // }
 
 
-        return ans.substr(0, ans.size() - extra);
+        return ans.substr(0, ans.size() - 1);
     }
 };
