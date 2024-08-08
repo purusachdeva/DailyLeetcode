@@ -8,12 +8,11 @@ public:
 
         vector<vector<int>> ans;
         int k = -1;
-        while (n) {
+        while (ans.size() != rows*cols) {
             // right
             for(int j = 0; j < i; j++) {
                 if (cCurr < cols && rCurr < rows && cCurr > -1 && rCurr > -1)  {
                     ans.push_back({rCurr, cCurr});
-                    n--;
                 }
                 cCurr++;
             }
@@ -25,7 +24,6 @@ public:
             for(int j = 0; j < i; j++) {
                 if (cCurr < cols && rCurr < rows && cCurr > -1 && rCurr > -1)  {
                     ans.push_back({rCurr, cCurr});
-                    n--;
                 }
                 rCurr++;
             }
@@ -37,7 +35,6 @@ public:
             for(int j = 0; j < i; j++) {
                 if (cCurr < cols && rCurr < rows && cCurr > -1 && rCurr > -1)  {
                     ans.push_back({rCurr, cCurr});
-                    n--;
                 }
                 cCurr--;
             }
@@ -49,7 +46,6 @@ public:
             for(int j = 0; j < i; j++) {
                 if (cCurr < cols && rCurr < rows && cCurr > -1 && rCurr > -1)  {
                     ans.push_back({rCurr, cCurr});
-                    n--;
                 }
                 rCurr--;
             }
