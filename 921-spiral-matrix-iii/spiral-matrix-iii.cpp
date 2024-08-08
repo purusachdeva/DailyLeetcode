@@ -1,4 +1,7 @@
 class Solution {
+    bool condition(int cCurr, int rCurr, int rows, int cols) {
+        return cCurr < cols && rCurr < rows && cCurr > -1 && rCurr > -1;
+    }
 public:
     vector<vector<int>> spiralMatrixIII(int rows, int cols, int rStart, int cStart) {
         int n = rows*cols;
@@ -11,7 +14,7 @@ public:
         while (ans.size() != rows*cols) {
             // right
             for(int j = 0; j < i; j++) {
-                if (cCurr < cols && rCurr < rows && cCurr > -1 && rCurr > -1)  {
+                if (condition(cCurr, rCurr, rows, cols))  {
                     ans.push_back({rCurr, cCurr});
                 }
                 cCurr++;
@@ -22,7 +25,7 @@ public:
 
             // down
             for(int j = 0; j < i; j++) {
-                if (cCurr < cols && rCurr < rows && cCurr > -1 && rCurr > -1)  {
+                if (condition(cCurr, rCurr, rows, cols))  {
                     ans.push_back({rCurr, cCurr});
                 }
                 rCurr++;
@@ -33,7 +36,7 @@ public:
 
             // left
             for(int j = 0; j < i; j++) {
-                if (cCurr < cols && rCurr < rows && cCurr > -1 && rCurr > -1)  {
+                if (condition(cCurr, rCurr, rows, cols))  {
                     ans.push_back({rCurr, cCurr});
                 }
                 cCurr--;
@@ -44,7 +47,7 @@ public:
 
             // up
             for(int j = 0; j < i; j++) {
-                if (cCurr < cols && rCurr < rows && cCurr > -1 && rCurr > -1)  {
+                if (condition(cCurr, rCurr, rows, cols))  {
                     ans.push_back({rCurr, cCurr});
                 }
                 rCurr--;
