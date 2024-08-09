@@ -7,7 +7,7 @@
 */
 
 class Solution {
-    bool validMagicSquare(vector<vector<int>> square, int x, int y) {
+    bool validMagicSquare(vector<vector<int>>& square, int x, int y) {
         // Find the Magic Sum
         int sum = 0;
         for (int i = 0; i < 3; i++) sum += square[x + i][y];
