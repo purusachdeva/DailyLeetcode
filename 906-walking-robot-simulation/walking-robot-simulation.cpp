@@ -11,11 +11,13 @@ public:
         }
 
         for (auto command : commands) {
-            if (command == -2) {
-                dir = (dir + 3) % 4; // Turn left
-            } else if (command == -1) {
-                dir = (dir + 1) % 4; // Turn right
-            } else {
+            if (command == -2)
+                dir = (dir + 3) % 4;
+            
+            else if (command == -1)
+                dir = (dir + 1) % 4;
+            
+            else {
                 for (int i = 0; i < command; ++i) {
                     int newX = x + directions[dir].first;
                     int newY = y + directions[dir].second;
@@ -25,7 +27,7 @@ public:
                         y = newY;
                         maxDist = max(maxDist, x * x + y * y);
                     } else {
-                        break; // Stop moving in this direction due to an obstacle
+                        break;
                     }
                 }
             }
