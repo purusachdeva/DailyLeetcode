@@ -6,17 +6,17 @@ public:
 
         int nSum = mean * (n + rolls.size()) - sum;
 
-        vector<int> ans(n, 1);
-        nSum -= n;
-        
+        // Edge case
+        if (n*6 < nSum || nSum < n) return {};
+
         // Create a vector with size = n and sum = nSum
-        int i = 0;
-        while (nSum != 0) {
-            if (i == n) return {};
-            if (ans[i] < 6) {
-                ans[i]++;
-                nSum--;
-            } else i++;
+        int rem = nSum % n;
+        int q = nSum / n;
+
+        vector<int> ans(n, q);
+
+        for (int i = 1; i <= rem; i++) {
+            ans[i]++;
         }
 
         return ans;
