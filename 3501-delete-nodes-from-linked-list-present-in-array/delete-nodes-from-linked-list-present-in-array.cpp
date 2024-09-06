@@ -11,9 +11,7 @@
 class Solution {
 public:
     ListNode* modifiedList(vector<int>& nums, ListNode* head) {
-        set<int> s;
-
-        for(auto num : nums) s.insert(num);
+        set<int> s(nums.begin(), nums.end());
 
         ListNode* prev = NULL;
         ListNode* temp = head;
