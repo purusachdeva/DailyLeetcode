@@ -10,45 +10,42 @@
  */
 class Solution {
 public:
-    int length(ListNode* head) {
-        int l = 0;
-        while(head != NULL) {
-            l++;
-            head = head->next;
-        }
-        return l;
-    }
-
     vector<ListNode*> splitListToParts(ListNode* head, int k) {
-        int len = length(head);
+        ListNode* temp = head;
 
-        int partLen = len/k;
-        int remaining = len%k;
-
-        vector<int> partLength(k, partLen);
-        for(int i = 0; i < partLength.size(); i++) {
-            if(remaining > 0) {
-                partLength[i]++;
-                remaining--;
-            }
+        int length = 0;
+        while (temp) {
+            temp = temp->next;
+            length++;
         }
 
-        vector<ListNode*> ans;
+        int size = length / k;
+        int remainingSize = length % k;
 
-        ListNode* temp = head;
-        
-        for(int i = 0; i < partLength.size(); i++) {
-            ans.push_back(temp);
-            while(partLength[i] != 1 && temp != NULL) {
-                temp = temp->next;
-                partLength[i]--;
+        vector<ListNode*> ans(k, NULL);
+
+        temp = head;
+        ListNode* prev = temp;
+
+        for (int i = 0; i < k; i++) {
+            ListNode* newPart = temp;
+
+            int currentSize = size;
+            if (remainingSize > 0) {
+                remainingSize--;
+                currentSize++;
             }
 
-            if (temp) {
-                ListNode* nexT = temp->next;
-                temp->next = NULL;
-                temp = nexT;
+            int j = 0;
+            while (j < currentSize){
+                prev = temp;
+                if (temp) temp = temp->next;
+                j++;
             }
+
+            if (prev) prev->next = NULL;
+
+            ans[i] = newPart;
         }
 
         return ans;
