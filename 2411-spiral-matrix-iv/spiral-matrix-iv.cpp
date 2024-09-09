@@ -8,6 +8,7 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+
 class Solution {
 public:
     vector<vector<int>> spiralMatrix(int m, int n, ListNode* head) {
@@ -15,11 +16,11 @@ public:
 
         int row = 0, col = 0;
         ListNode* temp = head;
-        int maxRow = m, maxCol = n, minRow = 0, minCol = 0;
+        int maxRow = m - 1, maxCol = n - 1, minRow = 0, minCol = 0;
 
         while (temp) {
             // right
-            while (temp && col < maxCol) {
+            while (temp && col <= maxCol) {
                 ans[row][col] = temp->val;
                 col++;
                 temp = temp->next;
@@ -29,7 +30,7 @@ public:
             minRow++;
 
             // down
-            while (temp && row < maxRow) {
+            while (temp && row <= maxRow) {
                 ans[row][col] = temp->val;
                 row++;
                 temp = temp->next;
