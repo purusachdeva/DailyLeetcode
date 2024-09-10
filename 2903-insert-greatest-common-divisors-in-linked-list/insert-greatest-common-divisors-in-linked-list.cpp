@@ -9,7 +9,7 @@
  * };
  */
 class Solution {
-    int gcd(int a, int b) {
+    int gcd(int& a, int& b) {
         int c = min(a, b);
 
         while (c > 0) {
