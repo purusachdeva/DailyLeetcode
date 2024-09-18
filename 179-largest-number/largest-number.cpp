@@ -15,10 +15,11 @@ public:
         for (auto i : nums)
             ans += to_string(i);
 
-        int j = 0;
-        while (ans[j] == '0') j++;
+        if (ans[0] == '0') return "0";
 
-        if (ans.substr(j) == "") return "0";
+        int j = 0;
+        if (ans[0] == '0') j++;
+
 
         return ans.substr(j);
     }
